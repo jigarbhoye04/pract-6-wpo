@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Space Galley color palette */
+:root {
+  --sg-deep: #780000;
+  --sg-crimson: #c1121f;
+  --sg-cream: #fdf0d5;
+  --sg-navy: #003049;
+  --sg-blue: #669bbc;
+
+  --background: var(--sg-cream);
+  --foreground: #071118;
+  --muted: #4b5563;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #00121a;
+    --foreground: #e6eef3;
+    --muted: #9aa6b2;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility helpers for the slider and subtle accents */
+.sg-accent { color: var(--sg-crimson); }
+.sg-bg-accent { background-color: var(--sg-navy); }
+.btn-sg {
+  background: linear-gradient(90deg, var(--sg-deep), var(--sg-crimson));
+  color: white;
+}
+
+/* Slider specific styles (for non-Tailwind parts) */
+.slider {
+  position: relative;
+  overflow: hidden;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(.22,.9,.31,1);
+}
+.slider-slide {
+  min-width: 100%;
+  user-select: none;
+}
+.slider img { width: 100%; height: 420px; object-fit: cover; display: block; }
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 9999px;
+}
+.slider-button.left { left: 1rem; }
+.slider-button.right { right: 1rem; }
+
+.slider-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.slider-dot { width: 10px; height: 10px; border-radius: 9999px; background: rgba(255,255,255,0.65); }
+.slider-dot.active { background: var(--sg-crimson); }
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .slider img { height: 220px; }
+}
+
